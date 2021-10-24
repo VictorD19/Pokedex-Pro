@@ -1,0 +1,32 @@
+.Home-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    transition: 0.9s all ease-in;
+}
+.Home-container h1{
+    margin-bottom: 0;
+    text-shadow:rgba(0, 0, 0, 0.897) 0px 3px 8px; 
+
+    font-size: 80px;
+}
+.tittle{
+    margin-top: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.tittle img{
+    margin-bottom: -70px;
+    height: 200px;
+}
+.Home-container h4{
+    margin: 0;
+    margin-right: 100px;
+    font-size: 40px;
+    text-shadow:rgba(0, 0, 0, 0.897) 0px 3px 8px; 
+
+}
