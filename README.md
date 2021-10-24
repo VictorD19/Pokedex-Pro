@@ -31,7 +31,7 @@ npm start
 
 ### Disfrute :smile:
 
-### Actualizações: smile
+### Actualizações: 
 
 
 [x] Add icones de tipos

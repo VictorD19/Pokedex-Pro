@@ -2,11 +2,16 @@ import "./style.css";
 import { handlerGenerateBg } from "../../Utils/GetColorBg";
 import { useState } from "react";
 import {getIconType} from '../../Utils/GetIcon'
+import { useThemeColor } from "../../Context/ThemeContext";
+import { usePokemonData } from "../../Context/PokemonContext";
 
 
-const PokemonDetails = ({ pokemon, changeColor }) => {
-  const { name, data } = pokemon;
+const PokemonDetails = () => {
+  const { pokemonData} = usePokemonData()
+  
+  const { name, data } = pokemonData;
   const { id, front_default, types, stats, abilities } = data;
+  const { setThemeColor} = useThemeColor()
 
   // get type pokemon
   const type = types.map((type) => {
@@ -27,12 +32,8 @@ const PokemonDetails = ({ pokemon, changeColor }) => {
 
   // get color by type
   let bgColor = handlerGenerateBg(type[0]);
-
-  // change Color bacgroun
-  document.body.style.backgroundColor = bgColor;
-
-  // change color button
-  changeColor(bgColor);
+ 
+  setThemeColor(bgColor);
 
   //  change tittle name
   document.title = name;

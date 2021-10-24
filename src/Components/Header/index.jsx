@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useThemeColor } from "../../Context/ThemeContext";
 import "./style.css";
+import { usePokemonData } from "../../Context/PokemonContext";
+import Loading from "../../Assets/loading.svg";
 
-const Header = ({ data, getData,color }) => {
+const Header = () => {
   const [scroll, setScroll] = useState(0);
+  const { themeColor } = useThemeColor();
+  const { listPokemonData, setPokemonData } = usePokemonData();
   const handleNext = () => {
     let x = scroll - 400;
     const wihtTotal = 500 * 30;
@@ -20,21 +25,34 @@ const Header = ({ data, getData,color }) => {
     setScroll(x);
   };
 
-  return (
+  return listPokemonData <= 0 ? (
+    <img src={Loading} className='Loading' alt="loading" />
+  ) : (
     <header className="Header-container">
       <div className="listContainer">
-        <div className="arrow-prev" onClick={handlePrev} style={{backgroundColor:color}}>
+        <div
+          className="arrow-prev"
+          onClick={handlePrev}
+          style={{ backgroundColor: themeColor }}
+        >
           <i className="fas fa-chevron-left"></i>
         </div>
-        <div className="arrow-next" onClick={handleNext}  style={{backgroundColor:color}}>
+        <div
+          className="arrow-next"
+          onClick={handleNext}
+          style={{ backgroundColor: themeColor }}
+        >
           <i className="fas fa-chevron-right"></i>
         </div>
 
-        <div className="list-item" style={{ marginLeft: `${scroll}px`,width: `${30*500}px` }}>
-          {data.map((pokemon, i) => (
+        <div
+          className="list-item"
+          style={{ marginLeft: `${scroll}px`, width: `${30 * 500}px` }}
+        >
+          {listPokemonData.map((pokemon, i) => (
             <button
               className="btn-item"
-              onClick={() => getData(pokemon)}
+              onClick={() => setPokemonData(pokemon)}
               key={i}
             >
               <Link to={`/${pokemon.name}`}>{i + 1}</Link>
