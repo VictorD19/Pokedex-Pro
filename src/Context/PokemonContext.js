@@ -3,17 +3,23 @@ import { getDataPokemonP } from "../Database/DatabaseApi";
 const PokemonContext = createContext();
 
 export default function PokemonProvider({ children }) {
-  const [pokemonData, setPokemonData] = useState(null);
+  const [pokemonData, setPokemonData] = useState(JSON.parse(localStorage.getItem('pokedata'))|| null);
   const [listPokemonData, setListPokemonDate] = useState([]);
   
-
+  
   useEffect(() => {
-    const getDataList = async () => {
+    const getData = async()=>{
       const data = await getDataPokemonP();
       setListPokemonDate(data);
-    };
-    getDataList();
+      localStorage.setItem('pokedata',JSON.stringify(data[0]))
+
+    }
+    getData()
+      
+      
   }, []);
+
+
 
   return (
     <PokemonContext.Provider

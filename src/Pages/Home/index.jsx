@@ -6,9 +6,6 @@ const  Home = () => {
   setTimeout(() => {
     setfadeInd(1);
   }, 500);
-
-
-
   return (
     <div className="Home-container" style={{ opacity: fadeInd }}>
       <div className="tittle">
